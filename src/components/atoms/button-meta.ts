@@ -34,6 +34,6 @@ export type ButtonStyleProps = {
 export type ButtonProps = {
   /** Anchor for targeting with automation */
   dataAnchor: string; // TODO achieve with forward-ref only?
-  /** Optional click handler */
+  /** Optional click handler, fired on mouse-up/touch-up */
   onClick?: () => void;
 } & Partial<ButtonStyleProps>;

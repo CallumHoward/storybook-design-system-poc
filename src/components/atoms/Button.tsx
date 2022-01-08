@@ -10,7 +10,6 @@ export const Button: FunctionComponent<ButtonProps> = ({
   buttonType = "primary",
   variation = "filled",
   state = "default",
-  onClick = () => null,
   children,
   ...props
 }) => {
