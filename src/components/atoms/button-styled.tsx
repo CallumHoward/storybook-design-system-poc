@@ -53,7 +53,7 @@ const VARIATION_BGCOLOR_MAP: Record<ButtonVariations, string> = {
 
 const typographyStyles = css`
   color: white;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 400;
 `;
 
@@ -75,13 +75,16 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   ${typographyStyles}
   ${defaultStyles}
 
+  /* Button size rules */
   ${(p) => SIZE_STYLE_MAP[p.size]}
   padding: ${(p) => SIZE_PADDING_MAP[p.size]};
   border-radius: ${(p) => SIZE_RADIUS_MAP[p.size]};
 
+  /* Button type rules */
   background-color: ${(p) => TYPE_BGCOLOR_MAP[p.buttonType]};
 
-  // Intentionally takes precedence over background-color set by buttonType above
+  /* Button variation rules */
+  /* Intentionally takes precedence over background-color set by buttonType above */
   background: ${(p) => VARIATION_BGCOLOR_MAP[p.variation]};
   color: ${(p) => p.variation !== "filled" && "#4740D4"};
   border: ${(p) => p.variation === "outline" && "solid 1px #D0D6E1"};
