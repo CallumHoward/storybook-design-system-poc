@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Input } from "./Input";
+import { Input } from "./input";
 
 type Meta = ComponentMeta<typeof Input>;
 type Story = ComponentStoryObj<typeof Input>;

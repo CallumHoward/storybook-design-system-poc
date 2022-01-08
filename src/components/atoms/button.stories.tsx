@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import styled from "styled-components";
 import { storyDoc } from "../helpers";
-import { Button } from "./Button";
+import { Button } from "./button";
 import {
     BUTTON_SIZES,
     BUTTON_STATES,

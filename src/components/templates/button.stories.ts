@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Button } from "./Button";
+import { Button } from "./button";
 
 type Meta = ComponentMeta<typeof Button>;
 type Story = ComponentStoryObj<typeof Button>;
