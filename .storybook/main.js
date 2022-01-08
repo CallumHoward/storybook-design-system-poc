@@ -6,6 +6,7 @@ module.exports = {
     "@storybook/preset-create-react-app",
   ],
   framework: "@storybook/react",
+  staticDirs: ["../public"],
   core: {
     builder: "webpack5",
   },
