@@ -1,19 +1,19 @@
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { Button } from "./Button";
+import { Input } from "./Input";
 
-type Meta = ComponentMeta<typeof Button>;
-type Story = ComponentStoryObj<typeof Button>;
+type Meta = ComponentMeta<typeof Input>;
+type Story = ComponentStoryObj<typeof Input>;
 
 const meta: Meta = {
-  component: Button,
+  component: Input,
 };
 export default meta;
 
 const Base: Story = {
   args: {
-    label: "Button",
-    onClick: action("button-click"),
+    label: "Input",
+    onClick: action("input-click"),
   },
 };
 
@@ -25,9 +25,7 @@ export const Primary: Story = {
 };
 
 export const Secondary: Story = {
-  args: {
-    ...Base.args,
-  },
+  ...Base,
 };
 
 export const Large: Story = {
