@@ -3,9 +3,7 @@ export const BUTTON_SIZES = ["large", "medium", "small"] as const;
 export const BUTTON_VARIATIONS = ["filled", "outline", "ghost"] as const;
 export const BUTTON_STATES = [
   "default",
-  "active",
   "hover",
-  "pressed",
   "disabled",
   "loading",
 ] as const;

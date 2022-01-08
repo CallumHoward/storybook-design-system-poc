@@ -12,6 +12,12 @@ const TYPE_BGCOLOR_MAP: Record<ButtonTypes, string> = {
   negative: "#EB0027",
 };
 
+const TYPE_HOVERCOLOR_MAP: Record<ButtonTypes, string> = {
+  primary: "#7A7DFF",
+  positive: "#36BB84", // TODO missing from Figma
+  negative: "#FF656C", // TODO missing from Figma
+};
+
 const SIZE_RADIUS_MAP: Record<ButtonSizes, string> = {
   large: "0.75rem",
   medium: "0.5rem",
@@ -30,20 +36,11 @@ const SIZE_HEIGHT_MAP: Record<ButtonSizes, string> = {
   small: "2rem",
 };
 
-const SIZE_STYLE_MAP: Record<ButtonSizes, FlattenSimpleInterpolation> = {
-  large: css`
-    height: ${SIZE_HEIGHT_MAP.large};
-    min-width: ${SIZE_HEIGHT_MAP.large};
-  `,
-  medium: css`
-    height: ${SIZE_HEIGHT_MAP.medium};
-    min-width: ${SIZE_HEIGHT_MAP.medium};
-  `,
-  small: css`
-    height: ${SIZE_HEIGHT_MAP.small};
-    min-width: ${SIZE_HEIGHT_MAP.small};
-  `,
-};
+const getSizeStyle = (size: ButtonSizes) =>
+  css({
+    height: SIZE_HEIGHT_MAP[size],
+    minWidth: SIZE_HEIGHT_MAP[size],
+  });
 
 const VARIATION_BGCOLOR_MAP: Record<ButtonVariations, string> = {
   filled: "",
@@ -58,13 +55,17 @@ const typographyStyles = css`
 `;
 
 const defaultStyles = css`
+  max-width: 12rem;
   box-sizing: border-box;
   border: none;
-  text-overflow: ellipsis;
-  overflow: hidden;
+
   white-space: nowrap;
-  max-width: 12rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+
   cursor: pointer;
+  user-select: none;
 `;
 
 /**
@@ -76,12 +77,21 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   ${defaultStyles}
 
   /* Button size rules */
-  ${(p) => SIZE_STYLE_MAP[p.size]}
-  padding: ${(p) => SIZE_PADDING_MAP[p.size]};
-  border-radius: ${(p) => SIZE_RADIUS_MAP[p.size]};
+  /* ${(p) => getSizeStyle(p.size)} */
+  ${(p) =>
+    css({
+      height: SIZE_HEIGHT_MAP[p.size],
+      minWidth: SIZE_HEIGHT_MAP[p.size],
+      padding: SIZE_PADDING_MAP[p.size],
+      borderRadius: SIZE_RADIUS_MAP[p.size],
+    })}
 
   /* Button type rules */
   background-color: ${(p) => TYPE_BGCOLOR_MAP[p.buttonType]};
+  :hover {
+    background-color: ${(p) =>
+      p.variation === "filled" && TYPE_HOVERCOLOR_MAP[p.buttonType]};
+  }
 
   /* Button variation rules */
   /* Intentionally takes precedence over background-color set by buttonType above */
