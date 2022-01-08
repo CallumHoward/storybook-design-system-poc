@@ -1,13 +1,13 @@
-import styled from "styled-components";
 import { action } from "@storybook/addon-actions";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import styled from "styled-components";
+import { Button } from "./Button";
 import {
-  Button,
   BUTTON_SIZES,
   BUTTON_STATES,
   BUTTON_TYPES,
   BUTTON_VARIATIONS,
-} from "./Button";
+} from "./button-meta";
 
 type Meta = ComponentMeta<typeof Button>;
 type Story = ComponentStoryObj<typeof Button>;
@@ -57,7 +57,7 @@ export const Types: Story = {
           {...args}
           dataAnchor={`sckit-button-${type}`}
           key={type}
-          type={type}
+          buttonType={type}
         />
       ))}
     </>
@@ -95,3 +95,5 @@ export const States: Story = {
     </>
   ),
 };
+
+// TODO Icons
