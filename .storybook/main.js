@@ -10,6 +10,9 @@ module.exports = {
     "@storybook/addon-a11y",
     "storybook-addon-pseudo-states",
   ],
+  reactOptions: {
+    fastRefresh: true,
+  },
   framework: "@storybook/react",
   staticDirs: ["../public"],
   core: {
