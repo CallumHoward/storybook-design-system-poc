@@ -7,6 +7,8 @@ module.exports = {
     "@storybook/preset-create-react-app",
     "@geometricpanda/storybook-addon-iframe",
     "storybook-addon-designs",
+    "@storybook/addon-a11y",
+    "storybook-addon-pseudo-states",
   ],
   framework: "@storybook/react",
   staticDirs: ["../public"],
