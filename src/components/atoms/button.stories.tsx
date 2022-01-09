@@ -1,7 +1,8 @@
 import { action } from "@storybook/addon-actions";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { withDesign } from "storybook-addon-designs";
 import styled from "styled-components";
-import { storyDoc } from "../helpers";
+import { figmaFrame, storyDoc } from "../helpers";
 import { Button } from "./button";
 import {
   BUTTON_SIZES,
@@ -16,6 +17,15 @@ type Story = ComponentStoryObj<typeof Button>;
 
 const meta: Meta = {
   component: Button,
+  decorators: [withDesign],
+  parameters: {
+    ...figmaFrame(
+      "https://www.figma.com/file/CJcm1w57PH5evALx1wztMO/Canopy--%3E-Product?node-id=1%3A154"
+    ),
+    iframe: {
+      url: "https://canopy.safetyculture.com/",
+    },
+  },
 };
 export default meta;
 

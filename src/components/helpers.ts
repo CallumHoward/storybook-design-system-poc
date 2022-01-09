@@ -12,3 +12,11 @@ export const storyDoc = (markdownText: string) => ({
     },
   },
 });
+
+export const figmaFrame = (figmaFrameUrl: string) => ({
+  design: {
+    type: "figma",
+    url: figmaFrameUrl,
+    allowFullscreen: true,
+  },
+});

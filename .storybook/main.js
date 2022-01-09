@@ -3,7 +3,10 @@ module.exports = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
     "@storybook/preset-create-react-app",
+    "@geometricpanda/storybook-addon-iframe",
+    "storybook-addon-designs",
   ],
   framework: "@storybook/react",
   staticDirs: ["../public"],
