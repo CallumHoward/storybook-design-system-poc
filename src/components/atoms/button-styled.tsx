@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import * as CSS from "csstype";
+import { Property } from "csstype";
 
 import {
   ButtonSizes,
@@ -8,37 +8,37 @@ import {
   ButtonVariations,
 } from "./button-meta";
 
-const TYPE_BGCOLOR_MAP: Record<ButtonTypes, CSS.Property.Color> = {
+const TYPE_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
   primary: "#6559FF",
   positive: "#098E56",
   negative: "#EB0027",
 };
 
-const TYPE_HOVERCOLOR_MAP: Record<ButtonTypes, CSS.Property.Color> = {
+const TYPE_HOVER_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
   primary: "#7A7DFF",
   positive: "#36BB84", // TODO missing from Figma
   negative: "#FF656C", // TODO missing from Figma
 };
 
-const TYPE_ACTIVECOLOR_MAP: Record<ButtonTypes, CSS.Property.Color> = {
-  primary: "#7A7DFF",
-  positive: "#36BB84", // TODO missing from Figma
-  negative: "#FF656C", // TODO missing from Figma
+const TYPE_ACTIVE_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
+  primary: "#4740D4",
+  positive: "#076F43", // TODO missing from Figma
+  negative: "#CC0007", // TODO missing from Figma
 };
 
-const SIZE_RADIUS_MAP: Record<ButtonSizes, CSS.Property.BorderRadius> = {
+const SIZE_RADIUS_MAP: Record<ButtonSizes, Property.BorderRadius> = {
   large: "0.75rem",
   medium: "0.5rem",
   small: "0.375rem",
 };
 
-const SIZE_PADDING_MAP: Record<ButtonSizes, CSS.Property.Padding> = {
+const SIZE_PADDING_MAP: Record<ButtonSizes, Property.Padding> = {
   large: "0.75rem 1.5rem",
   medium: "0.5rem 1rem",
   small: "0.25rem 0.75rem",
 };
 
-export const SIZE_HEIGHT_MAP: Record<ButtonSizes, CSS.Property.Height> = {
+export const SIZE_HEIGHT_MAP: Record<ButtonSizes, Property.Height> = {
   large: "3rem",
   medium: "2.5rem",
   small: "2rem",
@@ -52,13 +52,13 @@ const getSizeStyles = (p: ButtonStyleProps) =>
     borderRadius: SIZE_RADIUS_MAP[p.size],
   });
 
-const VARIATION_BG_MAP: Record<ButtonVariations, CSS.Property.Background> = {
+const VARIATION_BG_MAP: Record<ButtonVariations, Property.Background> = {
   filled: "",
   outline: "white",
   ghost: "none",
 };
 
-const VARIATION_BORDER_MAP: Record<ButtonVariations, CSS.Property.Border> = {
+const VARIATION_BORDER_MAP: Record<ButtonVariations, Property.Border> = {
   filled: "solid 1px",
   outline: "solid 1px #D0D6E1",
   ghost: "solid 1px #4740D400",
@@ -99,7 +99,7 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   background-color: ${(p) => TYPE_BGCOLOR_MAP[p.buttonType]};
   :hover {
     background-color: ${(p) =>
-      p.variation === "filled" && TYPE_HOVERCOLOR_MAP[p.buttonType]};
+      p.variation === "filled" && TYPE_HOVER_BGCOLOR_MAP[p.buttonType]};
   }
   /* background rule intentionally overrides background-color rule above */
   background: ${(p) => VARIATION_BG_MAP[p.variation]};
@@ -110,7 +110,7 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   }
 
   :active {
-    background: ${(p) => p.variation === "filled" && "#4740D4"};
+    background: ${(p) => TYPE_ACTIVE_BGCOLOR_MAP[p.buttonType]};
   }
 
   :disabled {
