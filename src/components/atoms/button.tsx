@@ -24,7 +24,7 @@ export const Button: FunctionComponent<ButtonProps> = ({
   return (
     <StyledButton
       data-anchor={dataAnchor}
-      data-testid={dataAnchor} // TODO temporary until queryByDataAnchor is available
+      data-testid={dataAnchor} // TODO remove when queryByDataAnchor is available
       type="button"
       disabled={state === "disabled" || state === "loading"}
       {...propsForStyleWithDefaults}

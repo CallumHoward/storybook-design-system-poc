@@ -18,14 +18,14 @@ export type ButtonStates = typeof BUTTON_STATES[number];
  * `styled(Button)` within your feature.
  */
 export type ButtonStyleProps = {
-  /** Size and spaciousness */
-  size: ButtonSizes;
   /** Role type of the button */
   buttonType: ButtonTypes;
-  /** Style variations */
-  variation: ButtonVariations;
+  /** Size and spaciousness */
+  size: ButtonSizes;
   /** Visual state of the button */
   state: ButtonStates;
+  /** Style variations */
+  variation: ButtonVariations;
 };
 
 export type ButtonProps = {

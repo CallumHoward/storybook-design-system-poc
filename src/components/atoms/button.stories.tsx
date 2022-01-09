@@ -1,5 +1,6 @@
 import { action } from "@storybook/addon-actions";
 import { ComponentMeta, ComponentStoryObj } from "@storybook/react";
+import { fireEvent, queryAllByTestId } from "@storybook/testing-library";
 import { withDesign } from "storybook-addon-designs";
 import styled from "styled-components";
 import { figmaFrame, storyDoc } from "../helpers";
@@ -41,11 +42,17 @@ const LayoutWrapper = styled.div`
 
 export const Component: Story = {
   args: {
-    dataAnchor: "sckit2-button",
+    dataAnchor: "sckit-button",
     children: "Button",
     onClick: action("button-click"),
   },
   decorators: [(story) => <LayoutWrapper>{story()}</LayoutWrapper>],
+  play: async ({ canvasElement }) => {
+    const buttons = queryAllByTestId(canvasElement, "sckit-button", { exact: false });
+    buttons.forEach((button) =>{
+      fireEvent.click(button);
+    })
+  },
 };
 
 export const Sizes: Story = {
@@ -115,7 +122,7 @@ export const Variations: Story = {
   ),
 };
 
-export const States: Story = {
+export const ReactStates: Story = {
   ...Component,
   ...storyDoc(
     `Ghost buttons should be reserved for cases where the button will not be disabled.  
@@ -133,7 +140,6 @@ export const States: Story = {
           state={state}
         />
       ))}
-      {/* TODO add an interactive one */}
     </>
   ),
 };

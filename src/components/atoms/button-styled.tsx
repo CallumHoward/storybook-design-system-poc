@@ -8,13 +8,16 @@ import {
   ButtonVariations,
 } from "./button-meta";
 
+export const DISABLED_BGCOLOR = "#F3F6FB";
+export const DISABLED_COLOR = "#8692A7";
+
 const TYPE_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
   primary: "#6559FF",
   positive: "#098E56",
   negative: "#EB0027",
 };
 
-const TYPE_HOVER_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
+export const TYPE_HOVER_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
   primary: "#7A7DFF",
   positive: "#36BB84", // TODO missing from Figma
   negative: "#FF656C", // TODO missing from Figma
@@ -104,6 +107,7 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   /* background rule intentionally overrides background-color rule above */
   background: ${(p) => VARIATION_BG_MAP[p.variation]};
   color: ${(p) => p.variation !== "filled" && "#4740D4"};
+  border-color: ${(p) => TYPE_BGCOLOR_MAP[p.buttonType]};
   border: ${(p) => VARIATION_BORDER_MAP[p.variation]};
   :hover {
     border: ${(p) => p.variation === "ghost" && VARIATION_BORDER_MAP.filled};
@@ -114,8 +118,9 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   }
 
   :disabled {
-    background: #f3f6fb;
-    border-color: #f3f6fb;
-    color: #8692a7;
+    background: ${DISABLED_BGCOLOR};
+    border-color: ${DISABLED_BGCOLOR};
+    color: #8692A7;
+    cursor: initial;
   }
 `;
