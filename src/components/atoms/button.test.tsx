@@ -96,6 +96,7 @@ describe("Ghost button styles", () => {
 
 describe("Positive type button", () => {
   // FIXME Can't trigger hover or mouseover with fireEvent
+  // Could try https://storybook.js.org/addons/storybook-addon-pseudo-states/
   it.skip("Should have sufficient color contrast when hovered", async () => {
     const { container } = render(<TypesButtonGroup />);
     fireEvent.mouseOver(screen.getByTestId(`sckit-button-positive`));
