@@ -17,7 +17,10 @@ const TYPE_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
   negative: "#EB0027",
 };
 
-export const TYPE_HOVER_BGCOLOR_MAP: Record<ButtonTypes, Property.BackgroundColor> = {
+export const TYPE_HOVER_BGCOLOR_MAP: Record<
+  ButtonTypes,
+  Property.BackgroundColor
+> = {
   primary: "#7A7DFF",
   positive: "#36BB84", // TODO missing from Figma
   negative: "#FF656C", // TODO missing from Figma
@@ -114,13 +117,14 @@ export const StyledButton = styled.button<ButtonStyleProps>`
   }
 
   :active {
-    background: ${(p) => TYPE_ACTIVE_BGCOLOR_MAP[p.buttonType]};
+    background: ${(p) =>
+      p.variation === "filled" && TYPE_ACTIVE_BGCOLOR_MAP[p.buttonType]};
   }
 
   :disabled {
     background: ${DISABLED_BGCOLOR};
     border-color: ${DISABLED_BGCOLOR};
-    color: #8692A7;
+    color: #8692a7;
     cursor: initial;
   }
 `;
