@@ -2,7 +2,6 @@ import { composeStories } from "@storybook/testing-react";
 import { fireEvent, render } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { MouseEvent } from "react";
-import { ButtonStates } from "./button-meta";
 import {
   DISABLED_BGCOLOR,
   DISABLED_COLOR,
@@ -14,30 +13,19 @@ expect.extend(toHaveNoViolations);
 
 // composeStories will process all information related to the component (eg. args)
 const {
-  ReactStates: StatesButtonGroup,
+  States: StatesButtonGroup,
   Variations: VariationsButtonGroup,
   Types: TypesButtonGroup,
 } = composeStories(ButtonStories);
 
 describe("Button disabled state", () => {
-  it("Should fire onClick callback when not disabled and clicked", () => {
+  it("Should fire onClick callback when not disabled and clicked", async () => {
     const mockOnClick = jest.fn(); // Relies on propagation
-    const { getByTestId } = render(<StatesButtonGroup onClick={mockOnClick} />);
+    const { container, getByTestId } = render(<StatesButtonGroup onClick={mockOnClick} />);
+    await StatesButtonGroup.play({ canvasElement: container });
     fireEvent.click(getByTestId("sckit-button-default"));
     expect(mockOnClick).toHaveBeenCalled();
   });
-
-  it.each(["disabled", "loading"] as ButtonStates[])(
-    "Should not fire onClick callback when in %s state and clicked",
-    (state: ButtonStates) => {
-      const mockOnClick = jest.fn(); // Relies on propagation
-      const { getByTestId } = render(
-        <StatesButtonGroup onClick={mockOnClick} />
-      );
-      fireEvent.click(getByTestId(`sckit-button-${state}`));
-      expect(mockOnClick).not.toHaveBeenCalled();
-    }
-  );
 
   it("Should propagate click events to the parent if not disabled", () => {
     const mockOnClick = jest.fn();
