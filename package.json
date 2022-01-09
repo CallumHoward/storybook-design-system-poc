@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test src/**/*.test.ts*",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -57,12 +57,14 @@
   "devDependencies": {
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-interactions": "^6.4.0",
     "@storybook/addon-links": "^6.4.9",
     "@storybook/builder-webpack5": "^6.4.9",
     "@storybook/manager-webpack5": "^6.4.9",
     "@storybook/node-logger": "^6.4.9",
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.4.9",
+    "@storybook/testing-react": "^1.2.2",
     "webpack": "^5.65.0"
   }
 }

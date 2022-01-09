@@ -6,6 +6,7 @@ import { StyledButton } from "./button-styled";
  * Primary UI component for user interaction
  */
 export const Button: FunctionComponent<ButtonProps> = ({
+  dataAnchor,
   size = "medium",
   buttonType = "primary",
   variation = "filled",
@@ -22,6 +23,8 @@ export const Button: FunctionComponent<ButtonProps> = ({
 
   return (
     <StyledButton
+      data-anchor={dataAnchor}
+      data-testid={dataAnchor} // TODO temporary until queryByDataAnchor is available
       type="button"
       disabled={state === "disabled" || state === "loading"}
       {...propsForStyleWithDefaults}
