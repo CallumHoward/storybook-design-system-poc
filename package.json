@@ -2,6 +2,7 @@
   "name": "cra-ts-sb",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/CallumHoward/storybook-design-system-poc",
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -17,9 +18,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx src/**/*.{ts,tsx}",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "predeploy": "npm run build-storybook",
-    "deploy-storybook": "gh-pages -d storybook-static"
+    "predeploy": "build-storybook",
+    "deploy": "gh-pages -d storybook-static"
   },
   "eslintConfig": {
     "extends": [
