@@ -4,11 +4,12 @@ import styled from "styled-components";
 import { storyDoc } from "../helpers";
 import { Button } from "./button";
 import {
-    BUTTON_SIZES,
-    BUTTON_STATES,
-    BUTTON_TYPES,
-    BUTTON_VARIATIONS
+  BUTTON_SIZES,
+  BUTTON_STATES,
+  BUTTON_TYPES,
+  BUTTON_VARIATIONS,
 } from "./button-meta";
+import { SIZE_HEIGHT_MAP } from "./button-styled";
 
 type Meta = ComponentMeta<typeof Button>;
 type Story = ComponentStoryObj<typeof Button>;
@@ -18,9 +19,13 @@ const meta: Meta = {
 };
 export default meta;
 
+const STORY_PADDING = 2;
 const LayoutWrapper = styled.div`
+  min-height: calc(${SIZE_HEIGHT_MAP["large"]} + ${2 * STORY_PADDING}rem);
+  display: flex;
+  align-items: center;
   & > * {
-    margin: 2rem;
+    margin: ${STORY_PADDING}rem;
   }
 `;
 
@@ -38,7 +43,8 @@ export const Sizes: Story = {
   ...storyDoc(
     `The most commonly used size should be the \`"medium"\` size. Buttons are
     rendered in CSS with inline styling, and so they can work alongside text
-    without additional styling overrides.`
+    without additional styling overrides. The minimum button width (empty
+    label) maintains a 1:1 aspect ratio between width and height.`
   ),
   render: (args) => (
     <>
@@ -102,9 +108,10 @@ export const Variations: Story = {
 export const States: Story = {
   ...Component,
   ...storyDoc(
-    `Regarding button focus behavior, see [MDN docs for HTML
+    `Ghost buttons should be reserved for cases where the button will not be disabled.  
+    Regarding button focus behavior, see [MDN docs for HTML
     button](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#clicking_and_focus)
-    for a note on disparity between browsers and OSes.`
+    for a note on disparity between browsers and operating systems.`
   ),
   render: (args) => (
     <>

@@ -13,10 +13,21 @@ export const Button: FunctionComponent<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const propsWithDefaults: ButtonStyleProps = { size, buttonType, variation, state };
+  const propsForStyleWithDefaults: ButtonStyleProps = {
+    size,
+    buttonType,
+    variation,
+    state,
+  };
+
   return (
-    <StyledButton type="button" {...propsWithDefaults} {...props}>
-      {children}
+    <StyledButton
+      type="button"
+      disabled={state === "disabled" || state === "loading"}
+      {...propsForStyleWithDefaults}
+      {...props}
+    >
+      {state !== "loading" ? children : "Loading..."}
     </StyledButton>
   );
 };
