@@ -122,7 +122,7 @@ export const Variations: Story = {
   ),
 };
 
-export const ReactStates: Story = {
+export const States: Story = {
   ...Component,
   ...storyDoc(
     `Ghost buttons should be reserved for cases where the button will not be disabled.  
