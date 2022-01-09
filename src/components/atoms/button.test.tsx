@@ -1,5 +1,5 @@
 import { composeStories } from "@storybook/testing-react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { axe, toHaveNoViolations } from "jest-axe";
 import { MouseEvent } from "react";
 import {
@@ -21,21 +21,21 @@ const {
 describe("Button disabled state", () => {
   it("Should fire onClick callback when not disabled and clicked", async () => {
     const mockOnClick = jest.fn(); // Relies on propagation
-    const { container, getByTestId } = render(<StatesButtonGroup onClick={mockOnClick} />);
+    const { container } = render(<StatesButtonGroup onClick={mockOnClick} />);
     await StatesButtonGroup.play({ canvasElement: container });
-    fireEvent.click(getByTestId("sckit-button-default"));
+    fireEvent.click(screen.getByTestId("sckit-button-default"));
     expect(mockOnClick).toHaveBeenCalled();
   });
 
   it("Should propagate click events to the parent if not disabled", () => {
     const mockOnClick = jest.fn();
     const mockParentOnClick = jest.fn();
-    const { getByTestId } = render(
+    render(
       <div onClick={mockParentOnClick}>
         <StatesButtonGroup onClick={mockOnClick} />
       </div>
     );
-    fireEvent.click(getByTestId(`sckit-button-default`));
+    fireEvent.click(screen.getByTestId(`sckit-button-default`));
     expect(mockOnClick).toHaveBeenCalled();
     expect(mockParentOnClick).toHaveBeenCalled();
   });
@@ -48,37 +48,37 @@ describe("Button disabled state", () => {
         e.preventDefault();
       });
     const mockParentOnClick = jest.fn();
-    const { getByTestId } = render(
+    render(
       <div onClick={mockParentOnClick}>
         <StatesButtonGroup onClick={mockOnClick} />
       </div>
     );
-    fireEvent.click(getByTestId(`sckit-button-default`));
+    fireEvent.click(screen.getByTestId(`sckit-button-default`));
     expect(mockOnClick).toHaveBeenCalled();
     expect(mockParentOnClick).not.toHaveBeenCalled();
   });
 
   it("Should have disabled attribute on the button HTML element", () => {
     // TODO use dataAnchor from sc-react-testing-library
-    const { getByTestId } = render(<StatesButtonGroup />);
-    expect(getByTestId("sckit-button-default")).not.toBeDisabled();
-    expect(getByTestId("sckit-button-disabled")).toBeDisabled();
-    expect(getByTestId("sckit-button-disabled")).toHaveStyle({
+    render(<StatesButtonGroup />);
+    expect(screen.getByTestId("sckit-button-default")).not.toBeDisabled();
+    expect(screen.getByTestId("sckit-button-disabled")).toBeDisabled();
+    expect(screen.getByTestId("sckit-button-disabled")).toHaveStyle({
       backgroundColor: DISABLED_BGCOLOR,
       borderColor: DISABLED_BGCOLOR,
       color: DISABLED_COLOR,
     });
-    expect(getByTestId("sckit-button-disabled")).not.toHaveStyle({
+    expect(screen.getByTestId("sckit-button-disabled")).not.toHaveStyle({
       cursor: "pointer",
     });
-    expect(getByTestId("sckit-button-loading")).toBeDisabled();
+    expect(screen.getByTestId("sckit-button-loading")).toBeDisabled();
   });
 });
 
 describe("Ghost button styles", () => {
   it("Should have transparent border to be same size as other variations", () => {
-    const { getByTestId } = render(<VariationsButtonGroup />);
-    expect(getByTestId("sckit-button-ghost")).toHaveStyle({
+    render(<VariationsButtonGroup />);
+    expect(screen.getByTestId("sckit-button-ghost")).toHaveStyle({
       borderStyle: "solid",
       borderWidth: "1px",
     });
@@ -86,9 +86,9 @@ describe("Ghost button styles", () => {
 
   // FIXME should be failing but it doesn't
   it.skip("Should not change background on mouseDown", () => {
-    const { getByTestId } = render(<VariationsButtonGroup />);
-    fireEvent.mouseDown(getByTestId(`sckit-button-ghost`));
-    expect(getByTestId("sckit-button-ghost")).toHaveStyle({
+    render(<VariationsButtonGroup />);
+    fireEvent.mouseDown(screen.getByTestId(`sckit-button-ghost`));
+    expect(screen.getByTestId("sckit-button-ghost")).toHaveStyle({
       background: "none",
     });
   });
@@ -97,9 +97,9 @@ describe("Ghost button styles", () => {
 describe("Positive type button", () => {
   // FIXME Can't trigger hover or mouseover with fireEvent
   it.skip("Should have sufficient color contrast when hovered", async () => {
-    const { container, getByTestId } = render(<TypesButtonGroup />);
-    fireEvent.mouseOver(getByTestId(`sckit-button-positive`));
-    expect(getByTestId(`sckit-button-positive`)).toHaveStyle({
+    const { container } = render(<TypesButtonGroup />);
+    fireEvent.mouseOver(screen.getByTestId(`sckit-button-positive`));
+    expect(screen.getByTestId(`sckit-button-positive`)).toHaveStyle({
       backgroundColor: TYPE_HOVER_BGCOLOR_MAP["positive"],
     });
     expect(await axe(container)).toHaveNoViolations();
